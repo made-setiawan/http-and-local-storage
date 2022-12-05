@@ -18,6 +18,8 @@ class HtProductCrudFormView extends StatefulWidget {
   16. ok, bagus lanjut ke point 17
   buka HtProductCrudFormController
   */
+
+  //15.
   final Map? item;
 
   const HtProductCrudFormView({
@@ -124,38 +126,56 @@ class HtProductCrudFormView extends StatefulWidget {
                 (cek bagian kode yang memiliki InkWell di dalam ListViewBuilder)
                 */
 
+                //19.
                 QImagePicker(
                   label: "Photo",
                   hint: "Your photo",
                   validator: Validator.required,
                   value: controller.photo,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    controller.photo = value;
+                  },
                 ),
 
-                //q_textfield
+                //21.
                 QTextField(
-                  label: "Product Name",
-                  hint: "Product Name",
-                  validator: Validator.required,
-                  value: controller.productName,
-                  onChanged: (value) {},
-                ),
+                    label: "Product Name",
+                    hint: "Product Name",
+                    validator: Validator.required,
+                    value: controller.productName,
+                    onChanged: (value) {
+                      controller.productName = value;
+                    }),
 
+                //22.
                 QNumberField(
                   label: "Price Name",
                   hint: "Your Price Name",
                   validator: Validator.required,
                   value: controller.price.toString(),
                   onChanged: (value) {
+                    if (value.isEmpty) return;
                     controller.price = double.parse(value);
                   },
+
+                  //  if (value.isEmpty) return;
+                  //   controller.price = double.parse(value);
+
+                  // if (sensorData[0].isNotEmpty && sensorData[0] != null)
+                  // onChanged: (value) {
+                  //   controller.price = double.parse(value);
+                  // },
                 ),
+
+                //23.
                 QMemoField(
                   label: "Description",
                   hint: "Your Description",
                   validator: Validator.required,
                   value: controller.description,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    controller.description = value;
+                  },
                 ),
               ],
             ),

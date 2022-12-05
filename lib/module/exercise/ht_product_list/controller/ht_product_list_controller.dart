@@ -87,6 +87,7 @@ class HtProductListController extends State<HtProductListView>
     Tasks ini selesai
     */
 
+    //1.
     var url = "${AppConfig.baseUrl}/products";
     print("url: $url");
 
@@ -99,7 +100,10 @@ class HtProductListController extends State<HtProductListView>
       ),
     );
     Map obj = response.data;
+
+    //2.
     productList = obj["data"];
+    //3.
     setState(() {});
   }
 }

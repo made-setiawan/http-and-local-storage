@@ -42,6 +42,7 @@ class HtProductCrudListController extends State<HtProductCrudListView>
     14. Buka HtProductCrudFormView , lanjut point 15
     */
 
+    //10.
     var response = await Dio().get(
       "${AppConfig.baseUrl}/products",
       options: Options(
@@ -51,7 +52,10 @@ class HtProductCrudListController extends State<HtProductCrudListView>
       ),
     );
     Map obj = response.data;
+
+    //11.
     productList = obj["data"];
+    //12.
     setState(() {});
   }
 
@@ -93,7 +97,10 @@ class HtProductCrudListController extends State<HtProductCrudListView>
     Maka tasks PRODUCT CRUD selesai
     Whuff~
     */
+
+    //33B.
     var id = item["id"];
+    //33A
     var response = await Dio().delete(
       options: Options(
         headers: {

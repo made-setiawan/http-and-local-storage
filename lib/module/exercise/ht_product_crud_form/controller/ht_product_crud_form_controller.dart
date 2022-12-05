@@ -32,12 +32,14 @@ class HtProductCrudFormController extends State<HtProductCrudFormView>
     18. Kembali ke View, masuk ke point 19
     */
 
+    //17.
     if (widget.item != null) {
       photo = widget.item!["photo"];
       productName = widget.item!["product_name"];
+      // price = double.parse(widget.item!["price"]).toDouble();
       // price = double.parse(widget.item!["price"]);
-     price = widget.item!["price"];
-
+      price = widget.item!["price"];
+      // double result = double.parse('${val}');
       description = widget.item!["description"];
     }
     super.initState();
@@ -118,6 +120,8 @@ class HtProductCrudFormController extends State<HtProductCrudFormView>
 
   Point 33!
   */
+
+  //27.
   bool get isEditMode {
     return widget.item != null;
   }
@@ -148,8 +152,10 @@ class HtProductCrudFormController extends State<HtProductCrudFormView>
     Kembali ke HtProductCrudListController (Controller dari PRODUCT)
     */
 
+    //28.
     if (isEditMode) {
       var id = widget.item!["id"];
+      //30.
       var response = await Dio().post(
         "${AppConfig.baseUrl}/products/$id",
         options: Options(
@@ -166,6 +172,7 @@ class HtProductCrudFormController extends State<HtProductCrudFormView>
       );
       Map obj = response.data;
     } else {
+      //29.
       var response = await Dio().post(
         "${AppConfig.baseUrl}/products",
         options: Options(

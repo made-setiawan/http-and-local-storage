@@ -49,6 +49,8 @@ class HtLoginController extends State<HtLoginView> implements MvcController {
     Jika alert Login Gagal muncul, kamu sudah berhasil
     Menyelesaikan tasks ini
     */
+
+    //1.
     var response = await Dio().post(
       "${AppConfig.baseUrl}/auth/action/login",
       options: Options(
@@ -62,6 +64,8 @@ class HtLoginController extends State<HtLoginView> implements MvcController {
       },
     );
     Map obj = response.data;
+
+    //2.
     if (obj["success"] == true) {
       showInfoDialog("Login success!");
     } else {

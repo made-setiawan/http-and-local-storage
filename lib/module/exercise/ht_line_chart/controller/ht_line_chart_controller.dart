@@ -51,6 +51,8 @@ class HtLineChartController extends State<HtLineChartView>
 
     3. Panggil setState setelah-nya
     */
+
+    //1.
     var response = await Dio().get(
       "${AppConfig.baseUrl}/sales",
       options: Options(
@@ -61,6 +63,7 @@ class HtLineChartController extends State<HtLineChartView>
     );
     Map obj = response.data;
 
+    //2.
     List items = obj["data"];
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
@@ -71,6 +74,8 @@ class HtLineChartController extends State<HtLineChartView>
         ),
       );
     }
+
+    //3.
     setState(() {});
   }
 

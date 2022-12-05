@@ -49,6 +49,7 @@ class HtTodoListView extends StatefulWidget {
                       Expanded(
                         child: CheckboxListTile(
                           value: item["done"],
+                          // value: true,
                           title: Text("${item["todo"]}"),
                           onChanged: (value) {
                             controller.updateTodo(item);

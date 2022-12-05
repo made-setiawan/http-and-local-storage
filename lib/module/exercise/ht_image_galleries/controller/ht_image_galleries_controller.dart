@@ -44,6 +44,7 @@ class HtImageGalleriesController extends State<HtImageGalleriesView>
     3. Panggil setState setelah-nya
     */
 
+    //1.
     var response = await Dio().get(
       "${AppConfig.baseUrl}/image-galleries?limit=100",
       options: Options(
@@ -53,7 +54,9 @@ class HtImageGalleriesController extends State<HtImageGalleriesView>
       ),
     );
     Map obj = response.data;
+    //2.
     imageGalleries = obj["data"];
+    //3.
     setState(() {});
   }
 
@@ -138,6 +141,8 @@ class HtImageGalleriesController extends State<HtImageGalleriesView>
     12. Pilih file, dan lihatlah apakah gambar itu muncul
     Di dalam list, jika sudah muncul lanjut ke point 13
     */
+
+    //7.
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: [
@@ -150,6 +155,7 @@ class HtImageGalleriesController extends State<HtImageGalleriesView>
     File file = File(result.files.single.path!);
     String filePath = file.path;
 
+    //8.
     final formData = FormData.fromMap({
       'image': MultipartFile.fromBytes(
         File(filePath).readAsBytesSync(),
@@ -161,10 +167,11 @@ class HtImageGalleriesController extends State<HtImageGalleriesView>
       'https://api.imgbb.com/1/upload?key=b55ef3fd02b80ab180f284e479acd7c4',
       data: formData,
     );
-
+    //9.
     var data = res.data["data"];
     var url = data["url"];
 
+    //10.
     await addImage(url);
     await loadImageGalleries();
     hideLoading();
@@ -203,13 +210,18 @@ class HtImageGalleriesController extends State<HtImageGalleriesView>
     file picker dan image picker, dan mengupload-nya ke
     file hosting!
     */
+
+    //13.
     XFile? image = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       imageQuality: 40,
     );
+
+    //15.
     String? filePath = image?.path;
     if (filePath == null) return;
 
+    //14.
     final formData = FormData.fromMap({
       'image': MultipartFile.fromBytes(
         File(filePath).readAsBytesSync(),
@@ -225,6 +237,7 @@ class HtImageGalleriesController extends State<HtImageGalleriesView>
     var data = res.data["data"];
     var url = data["url"];
 
+    //16.
     await addImage(url);
     await loadImageGalleries();
     hideLoading();

@@ -39,6 +39,8 @@ class HtTodoListController extends State<HtTodoListView>
 
     3. Panggil setState setelah-nya, lanjut ke point 4
     */
+
+    //1.
     var response = await Dio().get(
       "${AppConfig.baseUrl}/todos",
       options: Options(
@@ -48,7 +50,10 @@ class HtTodoListController extends State<HtTodoListView>
       ),
     );
     Map obj = response.data;
+
+    //2.
     todoList = obj["data"];
+    //3.
     setState(() {});
   }
 
@@ -76,6 +81,8 @@ class HtTodoListController extends State<HtTodoListView>
     hideLoading();
     ###
     */
+
+    //4.
     var response = await Dio().post(
       "${AppConfig.baseUrl}/todos",
       options: Options(
@@ -89,6 +96,8 @@ class HtTodoListController extends State<HtTodoListView>
       },
     );
     Map obj = response.data;
+
+    //5.
     await loadTodoList();
     hideLoading();
   }
@@ -115,7 +124,11 @@ class HtTodoListController extends State<HtTodoListView>
     hideLoading();
     ###
     */
+
+    //7.
     var id = item["id"];
+
+    //6.
     var response = await Dio().delete(
       options: Options(
         headers: {
@@ -125,6 +138,8 @@ class HtTodoListController extends State<HtTodoListView>
       "${AppConfig.baseUrl}/todos/$id",
     );
     print(response.statusCode);
+
+    //8.
     await loadTodoList();
     hideLoading();
   }
@@ -160,7 +175,10 @@ class HtTodoListController extends State<HtTodoListView>
     15. Test menghapus todo, klik tombol silang. Apakah todo-nya hilang?
     16. Jika ke tiga point di atas bekerja, tasks ini selesai!
     */
+
+    //10.
     var id = item["id"];
+    //9.
     var response = await Dio().post(
       "${AppConfig.baseUrl}/todos/$id",
       options: Options(
@@ -168,13 +186,16 @@ class HtTodoListController extends State<HtTodoListView>
           "Content-Type": "application/json",
         },
       ),
-      data: {
-        "name": "morpheus",
-        "job": "programmer",
-      },
+      data: item,
+      // data: {
+      //   "name": "morpheus",
+      //   "job": "programmer",
+      // },
     );
     Map obj = response.data;
+    //11.
     item["done"] = !item["done"];
+    //12.
     await loadTodoList();
     hideLoading();
   }
